@@ -1,15 +1,15 @@
-%define		kdeappsver	19.04.1
+%define		kdeappsver	20.12.3
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		kldap
 Summary:	LDAP access API for KDE
 Name:		ka5-%{kaname}
-Version:	19.04.1
+Version:	20.12.3
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
-Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	d4f1452acc998435726faf6e2a3dc072
+Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
+# Source0-md5:	0d80c299679a8c51cd6c2494f2023f6e
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
@@ -17,8 +17,8 @@ BuildRequires:	Qt5Test-devel
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	cyrus-sasl-devel
 BuildRequires:	gettext-devel
-BuildRequires:	ka5-kcalcore-devel >= %{kdeappsver}
 BuildRequires:	kf5-extra-cmake-modules >= %{kframever}
+BuildRequires:	kf5-kcalendarcore-devel >= %{kframever}
 BuildRequires:	kf5-kcompletion-devel >= %{kframever}
 BuildRequires:	kf5-kdoctools-devel >= %{kframever}
 BuildRequires:	kf5-ki18n-devel >= %{kframever}
@@ -63,7 +63,7 @@ cd build
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
 
-rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/sr
+rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/{ko,sr}
 %find_lang %{kaname}_qt --with-qm --all-name --with-kde
 
 %clean
@@ -74,13 +74,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}_qt.lang
 %defattr(644,root,root,755)
-/etc/xdg/kldap.categories
-/etc/xdg/kldap.renamecategories
 %attr(755,root,root) %ghost %{_libdir}/libKF5Ldap.so.5
 %attr(755,root,root) %{_libdir}/libKF5Ldap.so.5.*.*
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kio/ldap.so
 %{_datadir}/kservices5/ldap.protocol
 %{_datadir}/kservices5/ldaps.protocol
+%{_datadir}/qlogging-categories5/kldap.categories
+%{_datadir}/qlogging-categories5/kldap.renamecategories
 
 %files devel
 %defattr(644,root,root,755)
