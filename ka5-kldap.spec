@@ -1,18 +1,19 @@
-%define		kdeappsver	20.12.3
+%define		kdeappsver	21.04.0
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		kldap
 Summary:	LDAP access API for KDE
 Name:		ka5-%{kaname}
-Version:	20.12.3
-Release:	2
+Version:	21.04.0
+Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	0d80c299679a8c51cd6c2494f2023f6e
+# Source0-md5:	73e4567f541b1ab0e8cb7ae9b3b8169e
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
+BuildRequires:	Qt5Keychain-devel >= 0.12.0
 BuildRequires:	Qt5Test-devel
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	cyrus-sasl-devel
@@ -74,7 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}_qt.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %ghost %{_libdir}/libKF5Ldap.so.5
+%ghost %{_libdir}/libKF5Ldap.so.5
 %attr(755,root,root) %{_libdir}/libKF5Ldap.so.5.*.*
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kio/ldap.so
 %{_datadir}/kservices5/ldap.protocol
@@ -87,5 +88,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/KF5/KLDAP
 %{_includedir}/KF5/kldap_version.h
 %{_libdir}/cmake/KF5Ldap
-%attr(755,root,root) %{_libdir}/libKF5Ldap.so
+%{_libdir}/libKF5Ldap.so
 %{_libdir}/qt5/mkspecs/modules/qt_Ldap.pri
