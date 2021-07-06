@@ -36,6 +36,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 kldap - an LDAP access API for KDE.
 
+%description -l pl.UTF-8
+kldap - API do dostępu do usług LDAP dla KDE.
+
 %package devel
 Summary:	Header files for %{kaname} development
 Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kaname}
