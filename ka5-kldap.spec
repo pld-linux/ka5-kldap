@@ -1,15 +1,15 @@
-%define		kdeappsver	21.04.3
+%define		kdeappsver	21.08.0
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		kldap
 Summary:	LDAP access API for KDE
 Name:		ka5-%{kaname}
-Version:	21.04.3
+Version:	21.08.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	354b84c189961cf5d2ee6d899efa559c
+# Source0-md5:	9dc9210d793cf22dea00be2bca21e7e8
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
@@ -81,8 +81,6 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_libdir}/libKF5Ldap.so.5
 %attr(755,root,root) %{_libdir}/libKF5Ldap.so.5.*.*
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kio/ldap.so
-%{_datadir}/kservices5/ldap.protocol
-%{_datadir}/kservices5/ldaps.protocol
 %{_datadir}/qlogging-categories5/kldap.categories
 %{_datadir}/qlogging-categories5/kldap.renamecategories
 
