@@ -20,6 +20,8 @@ BuildRequires:	Qt5Keychain-devel >= 0.12.0
 BuildRequires:	Qt5Test-devel
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	cyrus-sasl-devel
+BuildRequires:	docbook-dtd45-xml
+BuildRequires:	docbook-style-xsl
 BuildRequires:	gettext-devel
 BuildRequires:	kf5-extra-cmake-modules >= %{kframever}
 BuildRequires:	kf5-kcalendarcore-devel >= %{kframever}
