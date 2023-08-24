@@ -1,24 +1,24 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	23.04.3
+%define		kdeappsver	23.08.0
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		kldap
 Summary:	LDAP access API for KDE
 Name:		ka5-%{kaname}
-Version:	23.04.3
+Version:	23.08.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	0d11e190039a47d726746665bf9d5dd1
+# Source0-md5:	5c67faa292158771a716d10d4de6292f
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
 BuildRequires:	Qt5Keychain-devel >= 0.12.0
 BuildRequires:	Qt5Test-devel
-BuildRequires:	cmake >= 2.8.12
+BuildRequires:	cmake >= 3.20
 BuildRequires:	cyrus-sasl-devel
 BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl
@@ -60,17 +60,15 @@ Pliki nagłówkowe dla programistów używających %{kaname}.
 %setup -q -n %{kaname}-%{version}
 
 %build
-install -d build
-cd build
-%cmake -G Ninja \
+%cmake -B build \
+	-G Ninja \
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
 	-DHTML_INSTALL_DIR=%{_kdedocdir} \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-	..
-%ninja_build
+	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+%ninja_build -C build
 
 %if %{with tests}
-ctest
+ctest --test-dir build
 %endif
 
 
@@ -99,6 +97,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/qt5/mkspecs/modules/qt_Ldap.pri
 %{_includedir}/KPim5/KLDAP
-%{_libdir}/cmake/KF5Ldap
 %{_libdir}/cmake/KPim5Ldap
 %{_libdir}/libKPim5Ldap.so
